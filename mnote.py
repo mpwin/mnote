@@ -1,5 +1,6 @@
 import argparse
 import tkinter as tk
+import yaml
 
 
 def parse_args() -> argparse.Namespace:
@@ -15,10 +16,22 @@ def parse_args() -> argparse.Namespace:
 
 
 def main():
-    # args: argparse.Namespace = parse_args()
+    args: argparse.Namespace = parse_args()
+
+    with open(args.path) as f:
+        data: dict = yaml.safe_load(f)
 
     root = tk.Tk()
     root.title("mnote")
+
+    note: tk.Label = tk.Label(
+        root,
+        justify='left',
+        text=data['body'],
+        wraplength=400,
+        )
+    note.pack()
+
     root.mainloop()
 
 
