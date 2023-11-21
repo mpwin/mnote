@@ -26,9 +26,12 @@ def main():
 
     note: tk.Label = tk.Label(
         root,
+        font=('Lucida Console', 16),
         justify='left',
         text=data['body'],
-        wraplength=400,
+        padx=40,
+        pady=20,
+        wraplength=800,
         )
     note.pack()
 
