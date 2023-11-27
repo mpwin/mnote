@@ -1,6 +1,7 @@
 import argparse
 import tkinter as tk
 import yaml
+from PIL import Image, ImageTk
 
 
 def parse_args() -> argparse.Namespace:
@@ -23,6 +24,12 @@ def main():
 
     root = tk.Tk()
     root.title("mnote")
+
+    if 'image' in data:
+        image: Image = Image.open(data['image'])
+        image_tk: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
+        image_label: tk.Label = tk.Label(root, image=image_tk)
+        image_label.pack(side='left')
 
     note: tk.Label = tk.Label(
         root,
