@@ -19,14 +19,14 @@ def parse_args() -> argparse.Namespace:
 def main():
     args: argparse.Namespace = parse_args()
 
-    with open(args.path) as f:
+    with open(f"{args.path}/data.yaml") as f:
         data: dict = yaml.safe_load(f)
 
     root = tk.Tk()
     root.title("mnote")
 
     if 'image' in data:
-        image: Image = Image.open(data['image'])
+        image: Image = Image.open(f"{args.path}/{data['image']}")
         image_tk: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
         image_label: tk.Label = tk.Label(root, image=image_tk)
         image_label.pack(side='left')
