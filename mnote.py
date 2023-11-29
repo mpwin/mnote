@@ -16,6 +16,22 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def center_window(app: tk.Tk) -> None:
+    """Center the tkinter application window on the screen.
+
+    Args:
+        app: The root tkinter.Tk object.
+    """
+    app.update_idletasks()
+    window_w: int = app.winfo_width()
+    window_h: int = app.winfo_height()
+    screen_w: int = app.winfo_screenwidth()
+    screen_h: int = app.winfo_screenheight()
+    x: int = (screen_w//2) - (window_w//2)
+    y: int = (screen_h//2) - (window_h//2)
+    app.geometry("%dx%d+%d+%d" % (window_w, window_h, x, y))
+
+
 def main():
     args: argparse.Namespace = parse_args()
 
@@ -42,6 +58,7 @@ def main():
         )
     note.pack()
 
+    center_window(root)
     root.mainloop()
 
 
