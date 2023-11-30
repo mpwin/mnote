@@ -1,4 +1,5 @@
 import argparse
+import os
 import tkinter as tk
 import yaml
 from PIL import Image, ImageTk
@@ -34,8 +35,9 @@ def center_window(app: tk.Tk) -> None:
 
 def main():
     args: argparse.Namespace = parse_args()
+    name: str = os.path.basename(args.path).split('.')[0]
 
-    with open(f"{args.path}/data.yaml") as f:
+    with open(f"{args.path}/{name}.yaml") as f:
         data: dict = yaml.safe_load(f)
 
     root = tk.Tk()
