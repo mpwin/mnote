@@ -46,27 +46,31 @@ def main():
     if 'title' in data:
         title: tk.Label = tk.Label(
             root,
-            font=('Lucida Console', 20),
+            bg='#2d2d2d',
+            fg='#ffffff',
+            font=('Consolas', 20),
             text=data['title'],
             )
-        title.pack()
+        title.pack(fill='both')
 
     if 'image' in data:
         image: Image = Image.open(f"{args.path}/{data['image']}")
         image_tk: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
-        image_label: tk.Label = tk.Label(root, image=image_tk)
+        image_label: tk.Label = tk.Label(root, image=image_tk, borderwidth=0)
         image_label.pack(side='left')
 
     note: tk.Label = tk.Label(
         root,
-        font=('Lucida Console', 16),
+        bg='#1e1e1e',
+        fg='#d4d4d4',
+        font=('Consolas', 16),
         justify='left',
-        text=data['body'],
         padx=40,
         pady=20,
+        text=data['body'],
         wraplength=800,
         )
-    note.pack()
+    note.pack(expand=True, fill='both')
 
     center_window(root)
     root.mainloop()
