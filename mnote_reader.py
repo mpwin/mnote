@@ -43,6 +43,14 @@ def main():
     root = tk.Tk()
     root.title("mnote")
 
+    if 'title' in data:
+        title: tk.Label = tk.Label(
+            root,
+            font=('Lucida Console', 20),
+            text=data['title'],
+            )
+        title.pack()
+
     if 'image' in data:
         image: Image = Image.open(f"{args.path}/{data['image']}")
         image_tk: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
