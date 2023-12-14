@@ -59,18 +59,19 @@ def main():
         image_label: tk.Label = tk.Label(root, image=image_tk, borderwidth=0)
         image_label.pack(side='left')
 
-    note: tk.Label = tk.Label(
-        root,
-        bg='#1e1e1e',
-        fg='#d4d4d4',
-        font=('Consolas', 16),
-        justify='left',
-        padx=40,
-        pady=20,
-        text=data['body'],
-        wraplength=800,
-        )
-    note.pack(expand=True, fill='both')
+    if 'body' in data:
+        note: tk.Label = tk.Label(
+            root,
+            bg='#1e1e1e',
+            fg='#d4d4d4',
+            font=('Consolas', 16),
+            justify='left',
+            padx=40,
+            pady=20,
+            text=data['body'],
+            wraplength=800,
+            )
+        note.pack(expand=True, fill='both')
 
     center_window(root)
     root.mainloop()
