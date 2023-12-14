@@ -6,8 +6,7 @@ from PIL import Image, ImageTk
 
 
 def parse_args() -> argparse.Namespace:
-    """
-    Parses command-line arguments.
+    """Parses command-line arguments.
 
     Returns:
         argparse.Namespace: An object containing the parsed arguments.
@@ -48,7 +47,7 @@ def main():
             root,
             bg='#2d2d2d',
             fg='#ffffff',
-            font=('Consolas', 20),
+            font=('Consolas', 16),
             text=data['title'],
             )
         title.pack(fill='both')
@@ -77,5 +76,5 @@ def main():
     root.mainloop()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
