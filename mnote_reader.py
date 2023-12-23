@@ -55,8 +55,8 @@ def main():
     if 'image' in data:
         image: Image = Image.open(f"{args.path}/{data['image']}")
         image_tk: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
-        image_label: tk.Label = tk.Label(root, image=image_tk, borderwidth=0)
-        image_label.pack(side='left')
+        image_label: tk.Label = tk.Label(root, image=image_tk, bg='#1e1e1e', borderwidth=0)
+        image_label.pack(side='left', fill='both', expand=True)
 
     if 'body' in data:
         note: tk.Label = tk.Label(
