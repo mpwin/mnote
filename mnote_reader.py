@@ -25,6 +25,8 @@ class App(tk.Tk):
             self.image = self.make_image(data['image'])
         if 'body' in data:
             self.body = self.make_body(data['body'])
+        if 'recall' in data:
+            self.recall = self.make_recall(data['recall'])
 
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.
@@ -88,8 +90,68 @@ class App(tk.Tk):
             text=text,
             wraplength=800,
             )
-        body.pack(expand=True, fill='both')
+        body.pack(expand=True, fill='both', side='left')
         return body
+
+    def make_recall(self, items: list[dict]) -> tk.Frame:
+        """Creates and displays a recall frame with the specified Q&A items.
+
+        Args:
+            items: The list of Q&A items.
+
+        Returns:
+            The recall tkinter.Frame object.
+        """
+
+        frame: tk.Frame = tk.Frame(
+            self,
+            bg='#1e1e1e',
+            padx=40,
+            pady=20,
+            width=400,
+            )
+
+        for item in items:
+            q: str = item['q']
+            a: str = item['a']
+
+            q_label: tk.Label = tk.Label(
+                frame,
+                anchor='w',
+                bg='#1e1e1e',
+                fg='#569cd6',
+                font=('Consolas', 16),
+                text=q,
+                )
+            q_label.pack(fill='x')
+
+            a_label: tk.Label = tk.Label(
+                frame,
+                anchor='w',
+                bg='#1e1e1e',
+                fg='#d4d4d4',
+                font=('Consolas', 16),
+                )
+            a_label.pack(fill='x')
+
+            button: tk.Button = tk.Button(
+                frame,
+                bg='#1e1e1e',
+                fg='#d4d4d4',
+                font=('Consolas', 12),
+                text="Recall",
+                )
+            button.config(
+                command=lambda label=a_label, text=a, button=button: (
+                    label.config(text=text),
+                    button.pack_forget(),
+                    )
+                )
+            button.pack(fill='x')
+
+        frame.pack(fill='y', side='right')
+        frame.pack_propagate(False)
+        return frame
 
 
 def parse_args() -> argparse.Namespace:
