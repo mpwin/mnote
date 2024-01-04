@@ -102,8 +102,7 @@ class App(tk.Tk):
         Returns:
             The recall tkinter.Frame object.
         """
-
-        frame: tk.Frame = tk.Frame(
+        recall_frame: tk.Frame = tk.Frame(
             self,
             bg='#1e1e1e',
             padx=40,
@@ -112,11 +111,19 @@ class App(tk.Tk):
             )
 
         for item in items:
+            item_frame: tk.Frame = tk.Frame(
+                recall_frame,
+                bg='#1e1e1e',
+                height=80,
+                )
+            item_frame.pack_propagate(False)
+            item_frame.pack(fill='x')
+
             q: str = item['q']
             a: str = item['a']
 
             q_label: tk.Label = tk.Label(
-                frame,
+                item_frame,
                 anchor='w',
                 bg='#1e1e1e',
                 fg='#569cd6',
@@ -126,16 +133,18 @@ class App(tk.Tk):
             q_label.pack(fill='x')
 
             a_label: tk.Label = tk.Label(
-                frame,
+                item_frame,
                 anchor='w',
                 bg='#1e1e1e',
                 fg='#d4d4d4',
                 font=('Consolas', 16),
+                text=a,
                 )
-            a_label.pack(fill='x')
 
             button: tk.Button = tk.Button(
-                frame,
+                item_frame,
+                activebackground='#569cd6',
+                activeforeground='#d4d4d4',
                 bg='#1e1e1e',
                 fg='#d4d4d4',
                 font=('Consolas', 12),
@@ -143,15 +152,15 @@ class App(tk.Tk):
                 )
             button.config(
                 command=lambda label=a_label, text=a, button=button: (
-                    label.config(text=text),
+                    label.pack(fill='x'),
                     button.pack_forget(),
                     )
                 )
             button.pack(fill='x')
 
-        frame.pack(fill='y', side='right')
-        frame.pack_propagate(False)
-        return frame
+        recall_frame.pack_propagate(False)
+        recall_frame.pack(fill='y', side='right')
+        return recall_frame
 
 
 def parse_args() -> argparse.Namespace:
