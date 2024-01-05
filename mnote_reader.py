@@ -17,10 +17,20 @@ class App(tk.Tk):
         """
         super().__init__()
         self.path = path
+        self.panels: list = []
         self.title("mnote")
 
         if 'header' in data:
             self.header = self.make_header(data['header'])
+        for panel in data.get('panels', []):
+            match panel['type']:
+                case 'image':
+                    self.panels.append(self.make_image(panel['image']))
+                case 'text':
+                    self.panels.append(self.make_body(panel['text']))
+                case 'recall':
+                    self.panels.append(self.make_recall(panel['items']))
+
         if 'image' in data:
             self.image = self.make_image(data['image'])
         if 'body' in data:
