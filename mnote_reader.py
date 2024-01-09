@@ -59,26 +59,31 @@ class App(tk.Tk):
         header.pack(fill='both')
         return header
 
-    def make_image(self, data: dict) -> tuple[ImageTk.PhotoImage, tk.Label]:
+    def make_image(self, data: dict) -> tuple[tk.Frame, ImageTk.PhotoImage]:
         """Creates and displays an image panel from the input data.
 
         Args:
             data: The data and config of the image panel to be displayed.
 
         Returns:
-            A tuple that contains the image object and the tkinter.Label object
-            that is holding the image.
+            A tuple that contains the panel's root tkinter.Frame object and a
+            reference to the image's ImageTk.PhotoImage object.
         """
         image: Image = Image.open(f"{self.path}/{data['name']}")
         photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
-        label: tk.Label = tk.Label(
+        frame: tk.Frame = tk.Frame(
             self,
-            bg='#1e1e1e',
-            borderwidth=0,
+            height=image.height,
+            width=image.width,
+            )
+        label: tk.Label = tk.Label(
+            frame,
             image=photo_image,
             )
-        label.pack(side='left', fill='both', expand=True)
-        return (photo_image, label)
+        label.pack()
+        frame.pack_propagate(False)
+        frame.pack(side='left')
+        return (frame, photo_image)
 
     def make_body(self, text: str) -> tk.Label:
         """Creates and displays a body label with the specified text.
