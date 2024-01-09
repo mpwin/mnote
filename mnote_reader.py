@@ -169,7 +169,7 @@ class App(tk.Tk):
             button.pack(fill='x')
 
         recall_frame.pack_propagate(False)
-        recall_frame.pack(fill='y', side='right')
+        recall_frame.pack(fill='y', side='left')
         return recall_frame
 
 
