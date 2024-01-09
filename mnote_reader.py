@@ -25,7 +25,7 @@ class App(tk.Tk):
         for panel in data.get('panels', []):
             match panel['type']:
                 case 'image':
-                    self.panels.append(self.make_image(panel['image']))
+                    self.panels.append(self.make_image(panel['data']))
                 case 'text':
                     self.panels.append(self.make_body(panel['text']))
                 case 'recall':
@@ -59,17 +59,17 @@ class App(tk.Tk):
         header.pack(fill='both')
         return header
 
-    def make_image(self, name: str) -> tuple[ImageTk.PhotoImage, tk.Label]:
-        """Creates and displays a label that contains the specified image.
+    def make_image(self, data: dict) -> tuple[ImageTk.PhotoImage, tk.Label]:
+        """Creates and displays an image panel from the input data.
 
         Args:
-            name: The name of the image to be drawn.
+            data: The data and config of the image panel to be displayed.
 
         Returns:
             A tuple that contains the image object and the tkinter.Label object
             that is holding the image.
         """
-        image: Image = Image.open(f"{self.path}/{name}")
+        image: Image = Image.open(f"{self.path}/{data['name']}")
         photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
         label: tk.Label = tk.Label(
             self,
