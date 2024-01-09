@@ -78,9 +78,20 @@ class App(tk.Tk):
             )
         label: tk.Label = tk.Label(
             frame,
-            image=photo_image,
+            bg='#000000',
+            fg='#d4d4d4',
+            font=('Consolas', 16),
             )
-        label.pack()
+
+        if 'hide' in data:
+            label.config(text=data['hide'])
+            label.bind('<Button-1>', lambda event: label.config(
+                image=photo_image, text="",
+                ))
+        else:
+            label.config(image=photo_image)
+
+        label.pack(expand=True, fill='both')
         frame.pack_propagate(False)
         frame.pack(side='left')
         return (frame, photo_image)
