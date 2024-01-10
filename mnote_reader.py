@@ -19,6 +19,7 @@ class App(tk.Tk):
         self.path = path
         self.panels: list = []
         self.title("mnote")
+        self.config(bg='#1e1e1e')
 
         if 'header' in data:
             self.header = self.make_header(data['header'])
