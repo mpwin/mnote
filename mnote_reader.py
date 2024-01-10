@@ -132,6 +132,7 @@ class App(tk.Tk):
         recall_frame: tk.Frame = tk.Frame(
             self,
             bg='#1e1e1e',
+            height=80*len(items)+40,
             padx=40,
             pady=20,
             width=400,
