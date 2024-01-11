@@ -30,7 +30,7 @@ class App(tk.Tk):
                 case 'text':
                     self.panels.append(self.make_body(panel['data']))
                 case 'recall':
-                    self.panels.append(self.make_recall(panel['items']))
+                    self.panels.append(self.make_recall(panel['data']))
 
         if 'image' in data:
             self.image = self.make_image(data['image'])
@@ -120,25 +120,25 @@ class App(tk.Tk):
         body.pack(expand=True, fill='both', side='left')
         return body
 
-    def make_recall(self, items: list[dict]) -> tk.Frame:
-        """Creates and displays a recall frame with the specified Q&A items.
+    def make_recall(self, data: dict) -> tk.Frame:
+        """Creates and displays a recall panel from the input data.
 
         Args:
-            items: The list of Q&A items.
+            data: The data and config of the recall panel to be displayed.
 
         Returns:
-            The recall tkinter.Frame object.
+            The recall panel's root tkinter.Frame object.
         """
         recall_frame: tk.Frame = tk.Frame(
             self,
             bg='#1e1e1e',
-            height=80*len(items)+40,
+            height=80*len(data['items'])+40,
             padx=40,
             pady=20,
             width=400,
             )
 
-        for item in items:
+        for item in data['items']:
             item_frame: tk.Frame = tk.Frame(
                 recall_frame,
                 bg='#1e1e1e',
