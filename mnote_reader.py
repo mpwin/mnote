@@ -28,7 +28,7 @@ class App(tk.Tk):
                 case 'image':
                     self.panels.append(self.make_image(panel['data']))
                 case 'text':
-                    self.panels.append(self.make_body(panel['text']))
+                    self.panels.append(self.make_body(panel['data']))
                 case 'recall':
                     self.panels.append(self.make_recall(panel['items']))
 
@@ -97,14 +97,14 @@ class App(tk.Tk):
         frame.pack(side='left')
         return (frame, photo_image)
 
-    def make_body(self, text: str) -> tk.Label:
-        """Creates and displays a body label with the specified text.
+    def make_body(self, data: dict) -> tk.Label:
+        """Creates and displays a text panel from the input data.
 
         Args:
-            text: The text to be displayed in the body label.
+            data: The data and config of the text panel to be displayed.
 
         Returns:
-            The body tkinter.Label object.
+            The text panel's tkinter.Label object.
         """
         body: tk.Label = tk.Label(
             self,
@@ -114,7 +114,7 @@ class App(tk.Tk):
             justify='left',
             padx=40,
             pady=20,
-            text=text,
+            text=data['text'],
             wraplength=800,
             )
         body.pack(expand=True, fill='both', side='left')
