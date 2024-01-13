@@ -26,11 +26,11 @@ class App(tk.Tk):
         for panel in data.get('panels', []):
             match panel['type']:
                 case 'image':
-                    self.panels.append(self.make_image(panel['data']))
-                case 'text':
-                    self.panels.append(self.make_body(panel['data']))
+                    self.panels.append(self.make_image_panel(panel['data']))
                 case 'recall':
-                    self.panels.append(self.make_recall(panel['data']))
+                    self.panels.append(self.make_recall_panel(panel['data']))
+                case 'text':
+                    self.panels.append(self.make_text_panel(panel['data']))
 
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.
@@ -53,7 +53,9 @@ class App(tk.Tk):
         header.pack(fill='both')
         return header
 
-    def make_image(self, data: dict) -> tuple[tk.Frame, ImageTk.PhotoImage]:
+    def make_image_panel(
+            self, data: dict,
+            ) -> tuple[tk.Frame, ImageTk.PhotoImage]:
         """Creates and displays an image panel from the input data.
 
         Args:
@@ -90,30 +92,7 @@ class App(tk.Tk):
         frame.pack(side='left')
         return (frame, photo_image)
 
-    def make_body(self, data: dict) -> tk.Label:
-        """Creates and displays a text panel from the input data.
-
-        Args:
-            data: The data and config of the text panel to be displayed.
-
-        Returns:
-            The text panel's tkinter.Label object.
-        """
-        body: tk.Label = tk.Label(
-            self,
-            bg='#1e1e1e',
-            fg='#d4d4d4',
-            font=('Consolas', 16),
-            justify='left',
-            padx=40,
-            pady=20,
-            text=data['text'],
-            wraplength=800,
-            )
-        body.pack(expand=True, fill='both', side='left')
-        return body
-
-    def make_recall(self, data: dict) -> tk.Frame:
+    def make_recall_panel(self, data: dict) -> tk.Frame:
         """Creates and displays a recall panel from the input data.
 
         Args:
@@ -182,6 +161,29 @@ class App(tk.Tk):
         recall_frame.pack_propagate(False)
         recall_frame.pack(fill='y', side='left')
         return recall_frame
+
+    def make_text_panel(self, data: dict) -> tk.Label:
+        """Creates and displays a text panel from the input data.
+
+        Args:
+            data: The data and config of the text panel to be displayed.
+
+        Returns:
+            The text panel's tkinter.Label object.
+        """
+        body: tk.Label = tk.Label(
+            self,
+            bg='#1e1e1e',
+            fg='#d4d4d4',
+            font=('Consolas', 16),
+            justify='left',
+            padx=40,
+            pady=20,
+            text=data['text'],
+            wraplength=800,
+            )
+        body.pack(expand=True, fill='both', side='left')
+        return body
 
 
 def parse_args() -> argparse.Namespace:
