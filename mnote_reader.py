@@ -32,13 +32,6 @@ class App(tk.Tk):
                 case 'recall':
                     self.panels.append(self.make_recall(panel['data']))
 
-        if 'image' in data:
-            self.image = self.make_image(data['image'])
-        if 'body' in data:
-            self.body = self.make_body(data['body'])
-        if 'recall' in data:
-            self.recall = self.make_recall(data['recall'])
-
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.
 
