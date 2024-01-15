@@ -162,17 +162,18 @@ class App(tk.Tk):
         recall_frame.pack(fill='y', side='left')
         return recall_frame
 
-    def make_text_panel(self, data: dict) -> tk.Label:
+    def make_text_panel(self, data: dict) -> tk.Frame:
         """Creates and displays a text panel from the input data.
 
         Args:
             data: The data and config of the text panel to be displayed.
 
         Returns:
-            The text panel's tkinter.Label object.
+            The text panel's root tkinter.Frame object.
         """
+        frame: tk.Frame = tk.Frame(self)
         body: tk.Label = tk.Label(
-            self,
+            frame,
             bg='#1e1e1e',
             fg='#d4d4d4',
             font=('Consolas', 16),
@@ -182,7 +183,8 @@ class App(tk.Tk):
             text=data['text'],
             wraplength=800,
             )
-        body.pack(expand=True, fill='both', side='left')
+        body.pack()
+        frame.pack(side='left')
         return body
 
 
