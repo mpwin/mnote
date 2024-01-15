@@ -53,17 +53,14 @@ class App(tk.Tk):
         header.pack(fill='both')
         return header
 
-    def make_image_panel(
-            self, data: dict,
-            ) -> tuple[tk.Frame, ImageTk.PhotoImage]:
+    def make_image_panel(self, data: dict) -> tk.Frame:
         """Creates and displays an image panel from the input data.
 
         Args:
             data: The data and config of the image panel to be displayed.
 
         Returns:
-            A tuple that contains the panel's root tkinter.Frame object and a
-            reference to the image's ImageTk.PhotoImage object.
+            The image panel's root tkinter.Frame object.
         """
         image: Image = Image.open(f"{self.path}/{data['name']}")
         photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
@@ -78,6 +75,7 @@ class App(tk.Tk):
             fg='#d4d4d4',
             font=('Consolas', 16),
             )
+        label.image = photo_image # Keep a reference to the image
 
         if 'hide' in data:
             label.config(text=data['hide'])
@@ -90,7 +88,7 @@ class App(tk.Tk):
         label.pack(expand=True, fill='both')
         frame.pack_propagate(False)
         frame.pack(side='left')
-        return (frame, photo_image)
+        return frame
 
     def make_recall_panel(self, data: dict) -> tk.Frame:
         """Creates and displays a recall panel from the input data.
