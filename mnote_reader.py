@@ -217,7 +217,7 @@ def main():
     args: argparse.Namespace = parse_args()
     name: str = os.path.basename(args.path).split('.')[0]
 
-    with open(f"{args.path}/{name}.yaml") as f:
+    with open(f"{args.path}/{name}.yaml", encoding='utf-8') as f:
         data: dict = yaml.safe_load(f)
 
     app: App = App(args.path, data)
