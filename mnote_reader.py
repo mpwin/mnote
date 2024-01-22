@@ -66,8 +66,8 @@ class App(tk.Tk):
         photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
         frame: tk.Frame = tk.Frame(
             self,
-            height=image.height,
-            width=image.width,
+            height=data.get('height', image.height),
+            width=data.get('width', image.width),
             )
         label: tk.Label = tk.Label(
             frame,
