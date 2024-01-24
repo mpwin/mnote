@@ -30,7 +30,7 @@ class App(tk.Tk):
                 case 'recall':
                     self.panels.append(RecallPanel(self, panel['data']))
                 case 'text':
-                    self.panels.append(self.make_text_panel(panel['data']))
+                    self.panels.append(TextPanel(self, panel['data']))
 
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.
@@ -52,31 +52,6 @@ class App(tk.Tk):
             )
         header.pack(fill='both')
         return header
-
-    def make_text_panel(self, data: dict) -> tk.Frame:
-        """Creates and displays a text panel from the input data.
-
-        Args:
-            data: The data and config of the text panel to be displayed.
-
-        Returns:
-            The text panel's root tkinter.Frame object.
-        """
-        frame: tk.Frame = tk.Frame(self)
-        body: tk.Label = tk.Label(
-            frame,
-            bg='#1e1e1e',
-            fg='#d4d4d4',
-            font=('Consolas', 16),
-            justify='left',
-            padx=40,
-            pady=20,
-            text=data['text'],
-            wraplength=800,
-            )
-        body.pack()
-        frame.pack(side='left')
-        return body
 
 
 class Panel(tk.Frame):
@@ -215,6 +190,33 @@ class RecallPanel(Panel):
 
         self.pack_propagate(False)
         self.pack(fill='y', side='left')
+
+
+class TextPanel(Panel):
+    """A subclass of Panel specialized for displaying text."""
+
+    def __init__(self, app: App, data: dict) -> None:
+        """Initializes a new TextPanel instance.
+
+        Args:
+            app: The main Mnote App instance.
+            data: Configuration and content for the panel.
+        """
+        super().__init__(app, data)
+
+        body: tk.Label = tk.Label(
+            self,
+            bg='#1e1e1e',
+            fg='#d4d4d4',
+            font=('Consolas', 16),
+            justify='left',
+            padx=40,
+            pady=20,
+            text=data['text'],
+            wraplength=800,
+            )
+        body.pack()
+        self.pack(side='left')
 
 
 def parse_args() -> argparse.Namespace:
