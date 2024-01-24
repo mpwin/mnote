@@ -26,7 +26,7 @@ class App(tk.Tk):
         for panel in data.get('panels', []):
             match panel['type']:
                 case 'image':
-                    self.panels.append(self.make_image_panel(panel['data']))
+                    self.panels.append(ImagePanel(self, panel['data']))
                 case 'recall':
                     self.panels.append(self.make_recall_panel(panel['data']))
                 case 'text':
@@ -52,43 +52,6 @@ class App(tk.Tk):
             )
         header.pack(fill='both')
         return header
-
-    def make_image_panel(self, data: dict) -> tk.Frame:
-        """Creates and displays an image panel from the input data.
-
-        Args:
-            data: The data and config of the image panel to be displayed.
-
-        Returns:
-            The image panel's root tkinter.Frame object.
-        """
-        image: Image = Image.open(f"{self.path}/{data['name']}")
-        photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(image)
-        frame: tk.Frame = tk.Frame(
-            self,
-            height=data.get('height', image.height),
-            width=data.get('width', image.width),
-            )
-        label: tk.Label = tk.Label(
-            frame,
-            bg='#000000',
-            fg='#d4d4d4',
-            font=('Consolas', 16),
-            )
-        label.image = photo_image # Keep a reference to the image
-
-        if 'hide' in data:
-            label.config(text=data['hide'])
-            label.bind('<Button-1>', lambda event: label.config(
-                image=photo_image, text="",
-                ))
-        else:
-            label.config(image=photo_image)
-
-        label.pack(expand=True, fill='both')
-        frame.pack_propagate(False)
-        frame.pack(side='left')
-        return frame
 
     def make_recall_panel(self, data: dict) -> tk.Frame:
         """Creates and displays a recall panel from the input data.
@@ -204,6 +167,52 @@ class Panel(tk.Frame):
         super().__init__(app)
         self.app: App = app
         self.data: dict = data
+
+
+class ImagePanel(Panel):
+    """A subclass of Panel specialized for displaying images.
+
+    Attributes:
+        image: The Image object opened from the file specified in data.
+        photo_image: The PhotoImage object used for displaying the image in
+            Tkinter.
+        label: A Tkinter Label widget used for either displaying the image or a
+            placeholder text.
+    """
+
+    def __init__(self, app: App, data: dict) -> None:
+        """Initializes a new ImagePanel instance.
+
+        Args:
+            app: The main Mnote App instance.
+            data: Configuration and content for the panel.
+        """
+        super().__init__(app, data)
+
+        self.image: Image = Image.open(f"{self.app.path}/{data['name']}")
+        self.photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(self.image)
+        self.config(
+            height=data.get('height', self.image.height),
+            width=data.get('width', self.image.width),
+            )
+        self.label: tk.Label = tk.Label(
+            self,
+            bg='#000000',
+            fg='#d4d4d4',
+            font=('Consolas', 16),
+            )
+
+        if 'hide' in data:
+            self.label.config(text=data['hide'])
+            self.label.bind('<Button-1>', lambda event: self.label.config(
+                image=self.photo_image, text="",
+                ))
+        else:
+            self.label.config(image=self.photo_image)
+
+        self.label.pack(expand=True, fill='both')
+        self.pack_propagate(False)
+        self.pack(side='left')
 
 
 def parse_args() -> argparse.Namespace:
