@@ -186,6 +186,23 @@ class App(tk.Tk):
         return body
 
 
+class Panel(tk.Frame):
+    """The base class for the different types of Mnote panels.
+
+    Attributes:
+        data: A dict containing configuration and content for the panel.
+    """
+
+    def __init__(self, data: dict) -> None:
+        """Initializes a new Panel instance.
+
+        Args:
+            data: Configuration and content for the panel.
+        """
+        super().__init__()
+        self.data: dict = data
+
+
 def parse_args() -> argparse.Namespace:
     """Parses command-line arguments.
 
