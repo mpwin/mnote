@@ -16,7 +16,7 @@ class App(tk.Tk):
             data: The deserialized data from the Mnote's YAML file.
         """
         super().__init__()
-        self.path = path
+        self.path: str = path
         self.panels: list = []
         self.title("mnote")
         self.config(bg='#1e1e1e')
