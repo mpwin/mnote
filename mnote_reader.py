@@ -252,7 +252,7 @@ def center_window(app: tk.Tk) -> None:
     app.geometry("%dx%d+%d+%d" % (window_w, window_h, x, y))
 
 
-def main():
+def main() -> None:
     args: argparse.Namespace = parse_args()
     name: str = os.path.basename(args.path).split('.')[0]
 
