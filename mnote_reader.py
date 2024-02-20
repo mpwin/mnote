@@ -116,7 +116,7 @@ class ImagePanel(Panel):
         if 'hide' in data:
             self.label.config(text=data['hide'])
             self.label.bind('<Button-1>', lambda event: self.label.config(
-                image=self.photo_image, text="",
+                image=self.photo_image, text="", bg='#1e1e1e',
                 ))
         else:
             self.label.config(image=self.photo_image)
