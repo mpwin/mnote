@@ -210,17 +210,20 @@ class TextPanel(Panel):
         """
         super().__init__(app, data)
 
-        body: tk.Label = tk.Label(
+        body: tk.Text = tk.Text(
             self,
+            bd=0,
             bg='#1e1e1e',
             fg='#d4d4d4',
             font=('Consolas', 16),
-            justify='left',
             padx=40,
             pady=20,
-            text=data['text'],
-            wraplength=800,
+            height=20,
+            width=60,
+            wrap='word',
             )
+        body.insert(tk.END, data['text'])
+        body.config(state='disabled')
         body.pack()
         self.pack(side='left')
 
