@@ -36,8 +36,12 @@ def find_mnotes(path: str) -> list[str]:
 
 def main() -> None:
     path: str = get_path_arg()
-    mnotes: list[str] = find_mnotes(path)
-    print(random.choice(mnotes))
+
+    if path.endswith('.mnote'):
+        print(path)
+    else:
+        mnotes: list[str] = find_mnotes(path)
+        print(random.choice(mnotes))
 
 
 if __name__ == '__main__':
