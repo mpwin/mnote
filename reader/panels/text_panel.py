@@ -1,10 +1,10 @@
 import tkinter as tk
 
-from .panel import Panel
+from .base_panel import BasePanel
 
 
-class TextPanel(Panel):
-    """A subclass of Panel specialized for displaying text."""
+class TextPanel(BasePanel):
+    """A subclass of BasePanel specialized for displaying text."""
 
     def __init__(self, app: 'App', data: dict) -> None:
         """Initializes a new TextPanel instance.

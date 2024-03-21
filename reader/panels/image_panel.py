@@ -1,11 +1,11 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 
-from .panel import Panel
+from .base_panel import BasePanel
 
 
-class ImagePanel(Panel):
-    """A subclass of Panel specialized for displaying images.
+class ImagePanel(BasePanel):
+    """A subclass of BasePanel specialized for displaying images.
 
     Attributes:
         image: The Image object opened from the file specified in data.

@@ -1,10 +1,10 @@
 import tkinter as tk
 
-from .panel import Panel
+from .base_panel import BasePanel
 
 
-class RecallPanel(Panel):
-    """A subclass of Panel specialized for displaying recall items."""
+class RecallPanel(BasePanel):
+    """A subclass of BasePanel specialized for displaying recall items."""
 
     def __init__(self, app: 'App', data: dict) -> None:
         """Initializes a new RecallPanel instance.

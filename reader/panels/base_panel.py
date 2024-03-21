@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-class Panel(tk.Frame):
+class BasePanel(tk.Frame):
     """The base class for the different types of Mnote panels.
 
     Attributes:
@@ -10,7 +10,7 @@ class Panel(tk.Frame):
     """
 
     def __init__(self, app: 'App', data: dict) -> None:
-        """Initializes a new Panel instance.
+        """Initializes a new BasePanel instance.
 
         Args:
             app: The main Mnote App instance.
