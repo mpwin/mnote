@@ -10,9 +10,12 @@ if "%~1"=="" (
 if "%mpath:~-1%"=="\" set "mpath=%mpath:~0,-1%"
 
 for /f "delims=" %%a in ('
-    py %~dp0mnote_picker.py "%mpath%" ^
+    py %~dp0picker.py "%mpath%" ^
 ') do (
     set "mnote=%%a"
 )
 
-py %~dp0mnote_reader.py "%mnote%"
+setlocal
+set "PYTHONPATH=%~dp0;%PYTHONPATH%"
+py -m reader "%mnote%"
+endlocal
