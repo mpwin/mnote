@@ -15,11 +15,11 @@ class TextPanel(BasePanel):
         """
         super().__init__(app, data)
 
-        body: tk.Text = tk.Text(self)
-        body.insert(tk.END, data['text'])
-        body.config(**self.config())
+        text: tk.Text = tk.Text(self)
+        text.insert(tk.END, data['text'])
+        text.config(**self.config())
 
-        body.pack()
+        text.pack()
         self.pack(padx=40, pady=40, side='left')
 
     def config(self) -> dict:
