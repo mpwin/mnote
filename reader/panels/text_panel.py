@@ -15,19 +15,20 @@ class TextPanel(BasePanel):
         """
         super().__init__(app, data)
 
-        body: tk.Text = tk.Text(
-            self,
-            bd=0,
-            bg='#1e1e1e',
-            fg='#d4d4d4',
-            font=('Consolas', 16),
-            padx=40,
-            pady=20,
-            height=20,
-            width=60,
-            wrap='word',
-            )
+        body: tk.Text = tk.Text(self)
         body.insert(tk.END, data['text'])
-        body.config(state='disabled')
+        body.config(**self.config())
+
         body.pack()
-        self.pack(side='left')
+        self.pack(padx=40, pady=40, side='left')
+
+    def config(self) -> dict:
+        """Configures the text widget used within the TextPanel."""
+        return {
+            'bd': 0,
+            'bg': '#1e1e1e',
+            'fg': '#d4d4d4',
+            'font': ('Consolas', 16),
+            'state': 'disabled',
+            'wrap': 'word',
+            }
