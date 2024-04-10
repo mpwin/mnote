@@ -14,6 +14,13 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def get_mnotes(path: str) -> list[str]:
+    if path.endswith('.mnote'):
+        return [path]
+    else:
+        return find_mnotes(path)
+
+
 def find_mnotes(path: str) -> list[str]:
     """Searches for directories with an '.mnote' extension.
 
@@ -34,12 +41,8 @@ def find_mnotes(path: str) -> list[str]:
 
 def main() -> None:
     args: argparse.Namespace = parse_args()
-
-    if args.path.endswith('.mnote'):
-        print(args.path)
-    else:
-        mnotes: list[str] = find_mnotes(args.path)
-        print(random.choice(mnotes))
+    mnotes: list[str] = get_mnotes(args.path)
+    print(random.choice(mnotes))
 
 
 if __name__ == '__main__':
