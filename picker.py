@@ -15,27 +15,27 @@ def parse_args() -> argparse.Namespace:
 
 
 def get_mnotes(path: str) -> list[str]:
-    if path.endswith('.mnote'):
+    if os.path.isfile(path) and path.endswith('.mnote'):
         return [path]
     else:
         return find_mnotes(path)
 
 
 def find_mnotes(path: str) -> list[str]:
-    """Searches for directories with an '.mnote' extension.
+    """Searches for files with an '.mnote' extension.
 
     Args:
-        path: The root directory path from which the search begins.
+        path: The root directory path from where the search begins.
 
     Returns:
-        list[str]: A list of paths to directories that end with an '.mnote'
+        list[str]: A list of paths to files that end with an '.mnote'
             extension.
     """
     mnotes: list[str] = []
-    for dirpath, dirnames, _ in os.walk(path):
-        for dirname in dirnames:
-            if dirname.endswith('.mnote'):
-                mnotes.append(os.path.join(dirpath, dirname))
+    for dirpath, _, filenames in os.walk(path):
+        for filename in filenames:
+            if filename.endswith('.mnote'):
+                mnotes.append(os.path.join(dirpath, filename))
     return mnotes
 
 
