@@ -1,4 +1,5 @@
 import tkinter as tk
+from pathlib import Path
 from PIL import Image, ImageTk
 
 from .base_panel import BasePanel
@@ -15,16 +16,17 @@ class ImagePanel(BasePanel):
             placeholder text.
     """
 
-    def __init__(self, app: 'App', data: dict) -> None:
+    def __init__(self, app: 'App', data: dict, mnote_directory: Path) -> None:
         """Initializes a new ImagePanel instance.
 
         Args:
             app: The main Mnote App instance.
             data: Configuration and content for the panel.
+            mnote_directory: The directory path of the mnote.
         """
         super().__init__(app, data)
 
-        self.image: Image = Image.open(f"{self.app.path}/{data['name']}")
+        self.image: Image = Image.open(mnote_directory / data['path'])
         self.photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(self.image)
         self.config(
             height=data.get('height', self.image.height),

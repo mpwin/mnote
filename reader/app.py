@@ -29,7 +29,9 @@ class App(tk.Tk):
         for panel in data.get('panels', []):
             match panel['type']:
                 case 'image':
-                    self.panels.append(ImagePanel(self, panel['data']))
+                    self.panels.append(
+                        ImagePanel(self, panel['data'], self.mnote_directory)
+                        )
                 case 'recall':
                     self.panels.append(RecallPanel(self, panel['data']))
                 case 'text':
