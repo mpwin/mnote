@@ -17,7 +17,7 @@ class App(tk.Tk):
         super().__init__()
         self.mnote_path: Path = Path(mnote_path)
         self.mnote_name: str = self.mnote_path.stem
-        self.mnote_directory: str = self.mnote_path.parent
+        self.mnote_directory: Path = self.mnote_path.parent
 
         self.panels: list = []
         self.title("mnote")
