@@ -1,4 +1,5 @@
 import tkinter as tk
+from pathlib import Path
 
 from .panels import ImagePanel, RecallPanel, TextPanel
 
@@ -6,15 +7,18 @@ from .panels import ImagePanel, RecallPanel, TextPanel
 class App(tk.Tk):
     """A Tkinter application for displaying Mnote content."""
 
-    def __init__(self, path: str, data: dict) -> None:
+    def __init__(self, mnote_path: str, data: dict) -> None:
         """Initializes the App object based on its data argument.
 
         Args:
-            path: The file system location of the Mnote.
+            mnote_path: The file system location of the Mnote.
             data: The deserialized data from the Mnote's YAML file.
         """
         super().__init__()
-        self.path: str = path
+        self.mnote_path: Path = Path(mnote_path)
+        self.mnote_name: str = self.mnote_path.stem
+        self.mnote_directory: str = self.mnote_path.parent
+
         self.panels: list = []
         self.title("mnote")
         self.config(bg='#1e1e1e')
@@ -54,5 +58,5 @@ class App(tk.Tk):
 
     def on_close(self) -> None:
         """Handles the event triggered by closing the Tkinter window."""
-        print(self.path)
+        print(self.mnote_path)
         self.destroy()
