@@ -16,15 +16,14 @@ class ImagePanel(BasePanel):
             placeholder text.
     """
 
-    def __init__(self, app: 'App', data: dict, mnote_directory: Path) -> None:
+    def __init__(self, data: dict, mnote_directory: Path) -> None:
         """Initializes a new ImagePanel instance.
 
         Args:
-            app: The main Mnote App instance.
             data: Configuration and content for the panel.
             mnote_directory: The directory path of the mnote.
         """
-        super().__init__(app, data)
+        super().__init__(data)
 
         self.image: Image = Image.open(mnote_directory / data['path'])
         self.photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(self.image)

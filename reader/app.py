@@ -30,12 +30,12 @@ class App(tk.Tk):
             match panel['type']:
                 case 'image':
                     self.panels.append(
-                        ImagePanel(self, panel['data'], self.mnote_directory)
+                        ImagePanel(panel['data'], self.mnote_directory)
                         )
                 case 'recall':
-                    self.panels.append(RecallPanel(self, panel['data']))
+                    self.panels.append(RecallPanel(panel['data']))
                 case 'text':
-                    self.panels.append(TextPanel(self, panel['data']))
+                    self.panels.append(TextPanel(panel['data']))
 
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.

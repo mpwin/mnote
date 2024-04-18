@@ -6,14 +6,13 @@ from .base_panel import BasePanel
 class RecallPanel(BasePanel):
     """A subclass of BasePanel specialized for displaying recall items."""
 
-    def __init__(self, app: 'App', data: dict) -> None:
+    def __init__(self, data: dict) -> None:
         """Initializes a new RecallPanel instance.
 
         Args:
-            app: The main Mnote App instance.
             data: Configuration and content for the panel.
         """
-        super().__init__(app, data)
+        super().__init__(data)
 
         self.config(
             bg='#1e1e1e',
