@@ -1,7 +1,7 @@
 import tkinter as tk
 from pathlib import Path
 
-from .panels import ImagePanel, RecallPanel, TextPanel
+from .panels import ImagePanel, RecallPanel, SamplePanel, TextPanel
 
 
 class App(tk.Tk):
@@ -34,6 +34,8 @@ class App(tk.Tk):
                         )
                 case 'recall':
                     self.panels.append(RecallPanel(panel['data']))
+                case 'sample':
+                    self.panels.append(SamplePanel(panel['data']))
                 case 'text':
                     self.panels.append(TextPanel(panel['data']))
 
