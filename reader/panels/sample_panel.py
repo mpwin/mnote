@@ -15,7 +15,8 @@ class SamplePanel(BasePanel):
         """
         super().__init__(data)
 
-        sample: list = random.sample(data['items'], 10)
+        sample_size: int = min(10, len(data['items']))
+        sample: list = random.sample(data['items'], sample_size)
 
         for item in sample:
             item_label: tk.Label = tk.Label(
