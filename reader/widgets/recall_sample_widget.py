@@ -10,7 +10,7 @@ class RecallSampleWidget(tk.Frame):
 
         Args:
             parent: Parent widget.
-            data: Content for the panel.
+            data: Content for the widget.
         """
         super().__init__(parent)
 
