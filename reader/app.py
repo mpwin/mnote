@@ -1,7 +1,7 @@
 import tkinter as tk
 from pathlib import Path
 
-from .panels import ImagePanel, RecallPanel, SamplePanel, TextPanel
+from .panels import ImagePanel, RecallPanel, SamplePanel, TextPanel, WidgetPanel
 
 
 class App(tk.Tk):
@@ -27,7 +27,7 @@ class App(tk.Tk):
         if 'header' in data:
             self.header = self.make_header(data['header'])
         for panel in data.get('panels', []):
-            match panel['type']:
+            match panel.get('type'):
                 case 'image':
                     self.panels.append(
                         ImagePanel(panel['data'], self.mnote_directory)
@@ -38,6 +38,8 @@ class App(tk.Tk):
                     self.panels.append(SamplePanel(panel['data']))
                 case 'text':
                     self.panels.append(TextPanel(panel['data']))
+                case _:
+                    self.panels.append(WidgetPanel(panel))
 
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.
