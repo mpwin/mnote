@@ -39,7 +39,7 @@ class App(tk.Tk):
                 case 'text':
                     self.panels.append(TextPanel(panel['data']))
                 case _:
-                    self.panels.append(WidgetPanel(panel))
+                    self.panels.append(WidgetPanel(self, panel))
 
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.
