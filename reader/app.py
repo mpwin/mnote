@@ -1,9 +1,10 @@
 import tkinter as tk
 from pathlib import Path
 
-from .panels import RecallPanel, SamplePanel, TextPanel
+from .panels import SamplePanel, TextPanel
 from .widgets.image_widget import ImageWidget
 from .widgets.recall_sample_widget import RecallSampleWidget
+from .widgets.recall_widget import RecallWidget
 
 
 class App(tk.Tk):
@@ -31,8 +32,6 @@ class App(tk.Tk):
             self.header = self.make_header(data['header'])
         for panel in data.get('panels', []):
             match panel.get('type'):
-                case 'recall':
-                    self.panels.append(RecallPanel(panel['data']))
                 case 'sample':
                     self.panels.append(SamplePanel(panel['data']))
                 case 'text':
@@ -43,6 +42,8 @@ class App(tk.Tk):
                     self.widgets.append(
                         ImageWidget(self, widget, self.mnote_directory)
                         )
+                case 'recall':
+                    self.widgets.append(RecallWidget(self, widget))
                 case 'recall sample':
                     self.widgets.append(RecallSampleWidget(self, widget))
 

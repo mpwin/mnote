@@ -1,18 +1,17 @@
 import tkinter as tk
 
-from .base_panel import BasePanel
 
+class RecallWidget(tk.Frame):
+    """Widget for displaying recall items."""
 
-class RecallPanel(BasePanel):
-    """A subclass of BasePanel specialized for displaying recall items."""
-
-    def __init__(self, data: dict) -> None:
-        """Initializes a new RecallPanel instance.
+    def __init__(self, parent, data: dict) -> None:
+        """Initializes a new RecallWidget instance.
 
         Args:
-            data: Configuration and content for the panel.
+            parent: Parent widget.
+            data: Configuration and content for the widget.
         """
-        super().__init__(data)
+        super().__init__(parent)
 
         self.config(
             bg='#1e1e1e',
