@@ -1,7 +1,8 @@
 import tkinter as tk
 from pathlib import Path
 
-from .panels import ImagePanel, RecallPanel, SamplePanel, TextPanel, WidgetPanel
+from .panels import ImagePanel, RecallPanel, SamplePanel, TextPanel
+from .widgets.recall_sample_widget import RecallSampleWidget
 
 
 class App(tk.Tk):
@@ -20,6 +21,7 @@ class App(tk.Tk):
         self.mnote_directory: Path = self.mnote_path.parent
 
         self.panels: list = []
+        self.widgets: list = []
         self.title("mnote")
         self.config(bg='#1e1e1e')
         self.protocol('WM_DELETE_WINDOW', self.on_close)
@@ -38,8 +40,10 @@ class App(tk.Tk):
                     self.panels.append(SamplePanel(panel['data']))
                 case 'text':
                     self.panels.append(TextPanel(panel['data']))
-                case _:
-                    self.panels.append(WidgetPanel(self, panel))
+        for widget in data.get('widgets', []):
+            match widget['type']:
+                case 'recall sample':
+                    self.widgets.append(RecallSampleWidget(self, widget))
 
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.

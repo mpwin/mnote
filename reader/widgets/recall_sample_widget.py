@@ -37,4 +37,4 @@ class RecallSampleWidget(tk.Frame):
                     lambda e, label=label, text=text: label.config(text=text),
                     )
 
-        self.pack()
+        self.pack(side='left')
