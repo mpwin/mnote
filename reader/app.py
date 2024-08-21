@@ -23,7 +23,6 @@ class App(tk.Tk):
         self.mnote_name: str = self.mnote_path.stem
         self.mnote_directory: Path = self.mnote_path.parent
 
-        self.panels: list = []
         self.widgets: list = []
         self.title("mnote")
         self.config(bg='#1e1e1e')
