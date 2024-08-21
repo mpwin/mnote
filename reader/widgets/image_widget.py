@@ -2,11 +2,9 @@ import tkinter as tk
 from pathlib import Path
 from PIL import Image, ImageTk
 
-from .base_panel import BasePanel
 
-
-class ImagePanel(BasePanel):
-    """A subclass of BasePanel specialized for displaying images.
+class ImageWidget(tk.Frame):
+    """Widget for displaying images.
 
     Attributes:
         image: The Image object opened from the file specified in data.
@@ -16,14 +14,15 @@ class ImagePanel(BasePanel):
             placeholder text.
     """
 
-    def __init__(self, data: dict, mnote_directory: Path) -> None:
-        """Initializes a new ImagePanel instance.
+    def __init__(self, parent, data: dict, mnote_directory: Path) -> None:
+        """Initializes a new ImageWidget instance.
 
         Args:
-            data: Configuration and content for the panel.
+            parent: Parent widget.
+            data: Configuration and content for the widget.
             mnote_directory: The directory path of the mnote.
         """
-        super().__init__(data)
+        super().__init__(parent)
 
         self.image: Image = Image.open(mnote_directory / data['path'])
         self.photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(self.image)
