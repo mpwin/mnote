@@ -1,18 +1,17 @@
 import tkinter as tk
 
-from .base_panel import BasePanel
 
+class TextWidget(tk.Frame):
+    """Widget for displaying text."""
 
-class TextPanel(BasePanel):
-    """A subclass of BasePanel specialized for displaying text."""
-
-    def __init__(self, data: dict) -> None:
-        """Initializes a new TextPanel instance.
+    def __init__(self, parent, data: dict) -> None:
+        """Initializes a new TextWidget instance.
 
         Args:
-            data: Configuration and content for the panel.
+            parent: Parent widget.
+            data: Configuration and content for the widget.
         """
-        super().__init__(data)
+        super().__init__(parent)
 
         text: tk.Text = tk.Text(self)
         text.insert(tk.END, data['text'])
@@ -22,7 +21,7 @@ class TextPanel(BasePanel):
         self.pack(padx=40, pady=40, side='left')
 
     def config(self, data: dict) -> dict:
-        """Configures the text widget used within the TextPanel."""
+        """Configures the widget."""
 
         def height(text: str) -> int:
             return len(text.split('\n'))
