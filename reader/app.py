@@ -1,10 +1,11 @@
 import tkinter as tk
 from pathlib import Path
 
-from .panels import SamplePanel, TextPanel
+from .panels import TextPanel
 from .widgets.image_widget import ImageWidget
 from .widgets.recall_sample_widget import RecallSampleWidget
 from .widgets.recall_widget import RecallWidget
+from .widgets.sample_widget import SampleWidget
 
 
 class App(tk.Tk):
@@ -32,8 +33,6 @@ class App(tk.Tk):
             self.header = self.make_header(data['header'])
         for panel in data.get('panels', []):
             match panel.get('type'):
-                case 'sample':
-                    self.panels.append(SamplePanel(panel['data']))
                 case 'text':
                     self.panels.append(TextPanel(panel['data']))
         for widget in data.get('widgets', []):
@@ -46,6 +45,8 @@ class App(tk.Tk):
                     self.widgets.append(RecallWidget(self, widget))
                 case 'recall sample':
                     self.widgets.append(RecallSampleWidget(self, widget))
+                case 'sample':
+                    self.widgets.append(SampleWidget(self, widget))
 
     def make_header(self, text: str) -> tk.Label:
         """Creates and displays a header label with the specified text.

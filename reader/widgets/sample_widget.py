@@ -1,19 +1,18 @@
 import random
 import tkinter as tk
 
-from .base_panel import BasePanel
 
+class SampleWidget(tk.Frame):
+    """Widget for listing a random sample from a larger list of items."""
 
-class SamplePanel(BasePanel):
-    """A panel for listing a random sample from a larger list of items."""
-
-    def __init__(self, data: dict) -> None:
-        """Initializes a new SamplePanel instance.
+    def __init__(self, parent, data: dict) -> None:
+        """Initializes a new SampleWidget instance.
 
         Args:
-            data: Configuration and content for the panel.
+            parent: Parent widget.
+            data: Configuration and content for the widget.
         """
-        super().__init__(data)
+        super().__init__(parent)
 
         sample_size: int = min(10, len(data['items']))
         sample: list = random.sample(data['items'], sample_size)
