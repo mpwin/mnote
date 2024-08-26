@@ -1,17 +1,10 @@
-import argparse
 import os
 import random
 
 
-def parse_args() -> argparse.Namespace:
-    """Parses command-line arguments.
-
-    Returns:
-        argparse.Namespace: An object containing the parsed arguments.
-    """
-    parser: argparse.ArgumentParser = argparse.ArgumentParser()
-    parser.add_argument('path')
-    return parser.parse_args()
+def pick(path: str) -> str:
+    mnotes: list[str] = get_mnotes(path)
+    return(random.choice(mnotes))
 
 
 def get_mnotes(path: str) -> list[str]:
@@ -37,13 +30,3 @@ def find_mnotes(path: str) -> list[str]:
             if filename.endswith('.mnote'):
                 mnotes.append(os.path.join(dirpath, filename))
     return mnotes
-
-
-def main() -> None:
-    args: argparse.Namespace = parse_args()
-    mnotes: list[str] = get_mnotes(args.path)
-    print(random.choice(mnotes))
-
-
-if __name__ == '__main__':
-    main()
