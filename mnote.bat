@@ -6,4 +6,4 @@ if "%~1"=="" (
     set "mpath=%~1"
 )
 
-py %HOME%\Scripts\mnote %mpath%
+py "%HOME%\Scripts\mnote" "%mpath%"
