@@ -17,7 +17,16 @@ class SampleWidget(tk.Frame):
         sample_size: int = min(10, len(data['items']))
         sample: list = random.sample(data['items'], sample_size)
         self.display_items(sample)
+        self.config(self.frame_config)
         self.pack(side='left')
+
+    @property
+    def frame_config(self) -> dict:
+        return {
+            'bg': '#1e1e1e',
+            'padx': 40,
+            'pady': 40,
+            }
 
     @property
     def label_config(self) -> dict:
