@@ -16,13 +16,18 @@ class SampleWidget(tk.Frame):
 
         sample_size: int = min(10, len(data['items']))
         sample: list = random.sample(data['items'], sample_size)
+        self.display_items(sample)
 
-        for item in sample:
-            item_label: tk.Label = tk.Label(
-                bg='#1e1e1e',
-                fg='#d4d4d4',
-                font=('Consolas', 16),
-                pady=4,
-                text=item,
-                )
-            item_label.pack()
+    @property
+    def label_config(self) -> dict:
+        return {
+            'bg': '#1e1e1e',
+            'fg': '#d4d4d4',
+            'font': ('Consolas', 16),
+            'pady': 4,
+            }
+
+    def display_items(self, items: list) -> None:
+        for item in items:
+            label: tk.Label = tk.Label(text=item, **self.label_config)
+            label.pack()
