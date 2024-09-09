@@ -17,6 +17,7 @@ class SampleWidget(tk.Frame):
         sample_size: int = min(10, len(data['items']))
         sample: list = random.sample(data['items'], sample_size)
         self.display_items(sample)
+        self.pack(side='left')
 
     @property
     def label_config(self) -> dict:
@@ -29,5 +30,5 @@ class SampleWidget(tk.Frame):
 
     def display_items(self, items: list) -> None:
         for item in items:
-            label: tk.Label = tk.Label(text=item, **self.label_config)
+            label: tk.Label = tk.Label(self, text=item, **self.label_config)
             label.pack()
