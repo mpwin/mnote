@@ -13,10 +13,11 @@ class SampleWidget(tk.Frame):
             data: Configuration and content for the widget.
         """
         super().__init__(parent)
+        self.data = data
 
-        sample_size: int = min(10, len(data['items']))
-        sample: list = random.sample(data['items'], sample_size)
+        sample: list = random.sample(self.data['items'], self.sample_size)
         self.display_items(sample)
+
         self.config(self.frame_config)
         self.pack(side='left')
 
@@ -36,6 +37,10 @@ class SampleWidget(tk.Frame):
             'font': ('Consolas', 16),
             'pady': 4,
             }
+
+    @property
+    def sample_size(self) -> int:
+        return min(self.data.get('sample_size', 10), len(self.data['items']))
 
     def display_items(self, items: list) -> None:
         for item in items:
