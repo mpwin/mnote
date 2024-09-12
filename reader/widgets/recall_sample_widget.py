@@ -1,8 +1,10 @@
 import random
 import tkinter as tk
 
+from .base_widget import BaseWidget
 
-class RecallSampleWidget(tk.Frame):
+
+class RecallSampleWidget(BaseWidget):
     """Widget for listing a random sample of recall items from a larger list."""
 
     def __init__(self, parent, data: dict) -> None:
@@ -12,7 +14,7 @@ class RecallSampleWidget(tk.Frame):
             parent: Parent widget.
             data: Content for the widget.
         """
-        super().__init__(parent)
+        super().__init__(parent, data)
 
         sample_size: int = min(10, len(data.get('items', [])))
         sample: list = random.sample(data.get('items', []), sample_size)

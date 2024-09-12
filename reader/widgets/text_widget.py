@@ -1,7 +1,9 @@
 import tkinter as tk
 
+from .base_widget import BaseWidget
 
-class TextWidget(tk.Frame):
+
+class TextWidget(BaseWidget):
     """Widget for displaying text."""
 
     def __init__(self, parent, data: dict) -> None:
@@ -11,7 +13,7 @@ class TextWidget(tk.Frame):
             parent: Parent widget.
             data: Configuration and content for the widget.
         """
-        super().__init__(parent)
+        super().__init__(parent, data)
 
         text: tk.Text = tk.Text(self)
         text.insert(tk.END, data['text'])

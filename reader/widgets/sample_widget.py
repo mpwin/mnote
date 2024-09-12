@@ -1,8 +1,10 @@
 import random
 import tkinter as tk
 
+from .base_widget import BaseWidget
 
-class SampleWidget(tk.Frame):
+
+class SampleWidget(BaseWidget):
     """Widget for listing a random sample from a larger list of items."""
 
     def __init__(self, parent, data: dict) -> None:
@@ -12,8 +14,7 @@ class SampleWidget(tk.Frame):
             parent: Parent widget.
             data: Configuration and content for the widget.
         """
-        super().__init__(parent)
-        self.data = data
+        super().__init__(parent, data)
 
         sample: list = random.sample(self.data['items'], self.sample_size)
         self.display_items(sample)

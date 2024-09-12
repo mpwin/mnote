@@ -1,7 +1,9 @@
 import tkinter as tk
 
+from .base_widget import BaseWidget
 
-class RecallWidget(tk.Frame):
+
+class RecallWidget(BaseWidget):
     """Widget for displaying recall items."""
 
     def __init__(self, parent, data: dict) -> None:
@@ -11,7 +13,7 @@ class RecallWidget(tk.Frame):
             parent: Parent widget.
             data: Configuration and content for the widget.
         """
-        super().__init__(parent)
+        super().__init__(parent, data)
 
         self.config(
             bg='#1e1e1e',

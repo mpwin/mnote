@@ -2,8 +2,10 @@ import tkinter as tk
 from pathlib import Path
 from PIL import Image, ImageTk
 
+from .base_widget import BaseWidget
 
-class ImageWidget(tk.Frame):
+
+class ImageWidget(BaseWidget):
     """Widget for displaying images.
 
     Attributes:
@@ -22,7 +24,7 @@ class ImageWidget(tk.Frame):
             data: Configuration and content for the widget.
             mnote_directory: The directory path of the mnote.
         """
-        super().__init__(parent)
+        super().__init__(parent, data)
 
         self.image: Image = Image.open(mnote_directory / data['path'])
         self.photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(self.image)
