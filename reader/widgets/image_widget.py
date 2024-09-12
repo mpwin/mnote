@@ -49,4 +49,4 @@ class ImageWidget(BaseWidget):
 
         self.label.pack(expand=True, fill='both')
         self.pack_propagate(False)
-        self.pack(side='left')
+        self.pack(self.pack_config)

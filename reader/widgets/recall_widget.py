@@ -72,4 +72,4 @@ class RecallWidget(BaseWidget):
             button.pack(fill='x')
 
         self.pack_propagate(False)
-        self.pack(fill='y', side='left')
+        self.pack(**self.pack_config, fill='y')

@@ -7,3 +7,9 @@ class BaseWidget(tk.Frame):
     def __init__(self, parent, data: dict) -> None:
         super().__init__(parent)
         self.data = data
+
+    @property
+    def pack_config(self) -> dict:
+        return {
+            'side': self.data.get('pack_side', 'left'),
+            }

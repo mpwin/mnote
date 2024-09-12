@@ -20,7 +20,7 @@ class SampleWidget(BaseWidget):
         self.display_items(sample)
 
         self.config(self.frame_config)
-        self.pack(side='left')
+        self.pack(self.pack_config)
 
     @property
     def frame_config(self) -> dict:

@@ -20,7 +20,7 @@ class TextWidget(BaseWidget):
         text.config(**self.config(data))
 
         text.pack()
-        self.pack(padx=40, pady=40, side='left')
+        self.pack(**self.pack_config, padx=40, pady=40)
 
     def config(self, data: dict) -> dict:
         """Configures the widget."""

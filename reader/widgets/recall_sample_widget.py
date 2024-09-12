@@ -39,4 +39,4 @@ class RecallSampleWidget(BaseWidget):
                     lambda e, label=label, text=text: label.config(text=text),
                     )
 
-        self.pack(side='left')
+        self.pack(self.pack_config)
