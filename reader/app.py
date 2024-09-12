@@ -2,6 +2,7 @@ import tkinter as tk
 from pathlib import Path
 
 from .widgets.image_widget import ImageWidget
+from .widgets.link_widget import LinkWidget
 from .widgets.recall_sample_widget import RecallSampleWidget
 from .widgets.recall_widget import RecallWidget
 from .widgets.sample_widget import SampleWidget
@@ -36,6 +37,8 @@ class App(tk.Tk):
                     self.widgets.append(
                         ImageWidget(self, widget, self.mnote_directory)
                         )
+                case 'link':
+                    self.widgets.append(LinkWidget(self, widget))
                 case 'recall':
                     self.widgets.append(RecallWidget(self, widget))
                 case 'recall sample':
