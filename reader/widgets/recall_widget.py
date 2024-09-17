@@ -51,25 +51,13 @@ class RecallWidget(BaseWidget):
                 bg='#1e1e1e',
                 fg='#d4d4d4',
                 font=('Consolas', 16),
-                text=a,
+                text="?",
                 )
-
-            button: tk.Button = tk.Button(
-                item_frame,
-                activebackground='#569cd6',
-                activeforeground='#d4d4d4',
-                bg='#1e1e1e',
-                fg='#d4d4d4',
-                font=('Consolas', 12),
-                text="Recall",
+            a_label.pack(fill='x')
+            a_label.bind(
+                '<Button-1>',
+                lambda e, label=a_label, text=a: label.config(text=text),
                 )
-            button.config(
-                command=lambda label=a_label, text=a, button=button: (
-                    label.pack(fill='x'),
-                    button.pack_forget(),
-                    )
-                )
-            button.pack(fill='x')
 
         self.pack_propagate(False)
         self.pack(**self.pack_config, fill='y')
