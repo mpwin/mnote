@@ -15,49 +15,51 @@ class RecallWidget(BaseWidget):
         """
         super().__init__(parent, data)
 
-        self.config(
-            bg='#1e1e1e',
-            height=80*len(data['items'])+40,
-            padx=40,
-            pady=20,
-            width=400,
-            )
+        self.display_items(self.data['items'])
 
-        for item in data['items']:
-            item_frame: tk.Frame = tk.Frame(
-                self,
-                bg='#1e1e1e',
-                height=80,
-                )
-            item_frame.pack_propagate(False)
-            item_frame.pack(fill='x')
+        self.config(self.frame_config)
+        self.pack(**self.pack_config)
 
-            q: str = item['q']
-            a: str = item['a']
+    @property
+    def frame_config(self) -> dict:
+        return {
+            'bg': '#1e1e1e',
+            'padx': 40,
+            'pady': 40,
+            }
+
+    @property
+    def label_config(self) -> dict:
+        return {
+            'anchor': 'w',
+            'bg': '#1e1e1e',
+            'font': ('Consolas', 16),
+            'width': 40,
+            }
+
+    def display_items(self, items: list) -> None:
+        for item in items:
+            item_frame: tk.Frame = tk.Frame(self)
+            item_frame.pack(pady=(0, 20))
 
             q_label: tk.Label = tk.Label(
                 item_frame,
-                anchor='w',
-                bg='#1e1e1e',
                 fg='#569cd6',
-                font=('Consolas', 16),
-                text=q,
+                text=item['q'],
+                **self.label_config,
                 )
-            q_label.pack(fill='x')
+            q_label.pack()
 
             a_label: tk.Label = tk.Label(
                 item_frame,
-                anchor='w',
-                bg='#1e1e1e',
                 fg='#d4d4d4',
-                font=('Consolas', 16),
                 text="?",
+                **self.label_config,
                 )
-            a_label.pack(fill='x')
+            a_label.pack()
+
             a_label.bind(
                 '<Button-1>',
-                lambda e, label=a_label, text=a: label.config(text=text),
+                lambda e, label=a_label, text=item['a']:
+                    label.config(text=text),
                 )
-
-        self.pack_propagate(False)
-        self.pack(**self.pack_config, fill='y')
