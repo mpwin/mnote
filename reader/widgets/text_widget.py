@@ -16,29 +16,38 @@ class TextWidget(BaseWidget):
         super().__init__(parent, data)
 
         text: tk.Text = tk.Text(self)
-        text.insert(tk.END, data['text'])
-        text.config(**self.config(data))
-
+        text.insert(tk.END, self.data['text'])
+        text.config(self.text_config)
         text.pack()
-        self.pack(**self.pack_config, padx=40, pady=40)
 
-    def config(self, data: dict) -> dict:
-        """Configures the widget."""
+        self.config(self.frame_config)
+        self.pack(self.pack_config)
 
-        def height(text: str) -> int:
-            return len(text.split('\n'))
+    @property
+    def frame_config(self) -> dict:
+        return {
+            'bg': '#1e1e1e',
+            'padx': 40,
+            'pady': 40,
+            }
 
-        def width(text: str) -> int:
-            line_lengths = [len(line) for line in text.split('\n')]
-            return max(line_lengths)
-
+    @property
+    def text_config(self) -> dict:
         return {
             'bd': 0,
             'bg': '#1e1e1e',
             'fg': '#d4d4d4',
             'font': ('Consolas', 16),
-            'height': height(data['text']),
+            'height': self.text_height,
             'state': 'disabled',
-            'width': width(data['text']),
+            'width': self.text_width,
             'wrap': 'word',
             }
+
+    @property
+    def text_height(self) -> int:
+        return len(self.data['text'].split('\n'))
+
+    @property
+    def text_width(self) -> int:
+        return max([len(line) for line in self.data['text'].split('\n')])
