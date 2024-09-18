@@ -1,6 +1,7 @@
 import tkinter as tk
 from pathlib import Path
-from PIL import Image, ImageTk
+from PIL import Image
+from PIL.ImageTk import PhotoImage
 
 from .base_widget import BaseWidget
 
@@ -12,8 +13,6 @@ class ImageWidget(BaseWidget):
         image: The Image object opened from the file specified in data.
         photo_image: The PhotoImage object used for displaying the image in
             Tkinter.
-        label: A Tkinter Label widget used for either displaying the image or a
-            placeholder text.
     """
 
     def __init__(self, parent, data: dict, mnote_directory: Path) -> None:
@@ -27,8 +26,8 @@ class ImageWidget(BaseWidget):
         super().__init__(parent, data)
 
         self.image: Image = Image.open(mnote_directory / data['path'])
-        self.photo_image: ImageTk.PhotoImage = ImageTk.PhotoImage(self.image)
-        self.label: tk.Label = self.create_label(self.photo_image)
+        self.photo_image: PhotoImage = PhotoImage(self.image)
+        self.display_image(self.photo_image, self.data.get('hide'))
 
         self.config(self.frame_config)
         self.pack_propagate(False)
@@ -44,22 +43,22 @@ class ImageWidget(BaseWidget):
     @property
     def label_config(self) -> dict:
         return {
-            'bg': '#000000',
+            'bg': '#1e1e1e',
             'fg': '#d4d4d4',
             'font': ('Consolas', 16),
+            'text': "",
             }
 
-    def create_label(self, image: ImageTk.PhotoImage) -> tk.Label:
+    def display_image(self, image: PhotoImage, hide: str | None) -> None:
         label: tk.Label = tk.Label(self, **self.label_config)
 
-        if 'hide' in self.data:
-            label.config(text=self.data['hide'])
-            label.bind(
-                '<Button-1>',
-                lambda e: label.config(image=image, text="", bg='#1e1e1e'),
-                )
+        if hide:
+            label.config(text=hide, bg='black')
+            label.bind('<Button-1>', lambda e: self.reveal_image(label, image))
         else:
             label.config(image=image)
 
         label.pack(expand=True, fill='both')
-        return label
+
+    def reveal_image(self, label: tk.Label, image: PhotoImage) -> None:
+        label.config(image=image, **self.label_config)
