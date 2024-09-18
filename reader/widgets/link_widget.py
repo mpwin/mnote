@@ -31,6 +31,10 @@ class LinkWidget(BaseWidget):
         self.pack(self.pack_config)
 
     @property
+    def close(self) -> bool:
+        return self.data.get('close', False)
+
+    @property
     def frame_config(self) -> dict:
         return {
             'bg': '#1e1e1e',
@@ -49,3 +53,6 @@ class LinkWidget(BaseWidget):
 
     def open_link(self, url: str) -> None:
         webbrowser.open_new(url)
+
+        if self.close:
+            self.winfo_toplevel().destroy()
