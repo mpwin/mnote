@@ -18,7 +18,7 @@ class RecallWidget(BaseWidget):
         self.display_items(self.data['items'])
 
         self.config(self.frame_config)
-        self.pack(**self.pack_config)
+        self.pack(self.pack_config)
 
     @property
     def frame_config(self) -> dict:
