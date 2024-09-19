@@ -43,8 +43,8 @@ class ImageWidget(BaseWidget):
     @property
     def label_config(self) -> dict:
         return {
-            'bg': '#1e1e1e',
-            'fg': '#d4d4d4',
+            'bg': self.background,
+            'fg': self.foreground,
             'font': ('Consolas', 16),
             'text': "",
             }

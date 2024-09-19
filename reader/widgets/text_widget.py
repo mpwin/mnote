@@ -26,7 +26,7 @@ class TextWidget(BaseWidget):
     @property
     def frame_config(self) -> dict:
         return {
-            'bg': '#1e1e1e',
+            'bg': self.background,
             'padx': 40,
             'pady': 40,
             }
@@ -35,8 +35,8 @@ class TextWidget(BaseWidget):
     def text_config(self) -> dict:
         return {
             'bd': 0,
-            'bg': '#1e1e1e',
-            'fg': '#d4d4d4',
+            'bg': self.background,
+            'fg': self.foreground,
             'font': ('Consolas', 16),
             'height': self.text_height,
             'state': 'disabled',

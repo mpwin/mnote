@@ -23,7 +23,7 @@ class RecallWidget(BaseWidget):
     @property
     def frame_config(self) -> dict:
         return {
-            'bg': '#1e1e1e',
+            'bg': self.background,
             'padx': 40,
             'pady': 40,
             }
@@ -32,7 +32,7 @@ class RecallWidget(BaseWidget):
     def label_config(self) -> dict:
         return {
             'anchor': 'w',
-            'bg': '#1e1e1e',
+            'bg': self.background,
             'font': ('Consolas', 16),
             'width': 40,
             }
@@ -52,7 +52,7 @@ class RecallWidget(BaseWidget):
 
             a_label: tk.Label = tk.Label(
                 item_frame,
-                fg='#d4d4d4',
+                fg=self.foreground,
                 text="?",
                 **self.label_config,
                 )

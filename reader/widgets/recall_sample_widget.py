@@ -25,7 +25,7 @@ class RecallSampleWidget(BaseWidget):
     @property
     def frame_config(self) -> dict:
         return {
-            'bg': '#1e1e1e',
+            'bg': self.background,
             'padx': 40,
             'pady': 40,
             }
@@ -33,8 +33,8 @@ class RecallSampleWidget(BaseWidget):
     @property
     def label_config(self) -> dict:
         return {
-            'bg': '#1e1e1e',
-            'fg': '#d4d4d4',
+            'bg': self.background,
+            'fg': self.foreground,
             'font': ('Consolas', 16),
             'text': "?",
             'width': 40,

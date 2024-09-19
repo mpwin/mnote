@@ -37,7 +37,7 @@ class LinkWidget(BaseWidget):
     @property
     def frame_config(self) -> dict:
         return {
-            'bg': '#1e1e1e',
+            'bg': self.background,
             'padx': 40,
             'pady': 40,
             }
@@ -45,7 +45,7 @@ class LinkWidget(BaseWidget):
     @property
     def label_config(self) -> dict:
         return {
-            'bg': '#1e1e1e',
+            'bg': self.background,
             'fg': '#0e639c',
             'font': ('Consolas', 16),
             'pady': 4,
