@@ -21,6 +21,14 @@ class BaseWidget(tk.Frame):
         return self.widget_config.get('foreground', '#d4d4d4')
 
     @property
+    def font(self) -> str:
+        return self.widget_config.get('font', 'Consolas')
+
+    @property
+    def font_size(self) -> int:
+        return self.widget_config.get('font_size', 16)
+
+    @property
     def pack_config(self) -> dict:
         return {
             'side': self.data.get('pack_side', 'left'),

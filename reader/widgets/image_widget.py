@@ -45,7 +45,7 @@ class ImageWidget(BaseWidget):
         return {
             'bg': self.background,
             'fg': self.foreground,
-            'font': ('Consolas', 16),
+            'font': (self.font, self.font_size),
             'text': "",
             }
 

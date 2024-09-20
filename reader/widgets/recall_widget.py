@@ -33,7 +33,7 @@ class RecallWidget(BaseWidget):
         return {
             'anchor': 'w',
             'bg': self.background,
-            'font': ('Consolas', 16),
+            'font': (self.font, self.font_size),
             'width': 40,
             }
 

@@ -47,7 +47,7 @@ class LinkWidget(BaseWidget):
         return {
             'bg': self.background,
             'fg': '#0e639c',
-            'font': ('Consolas', 16),
+            'font': (self.font, self.font_size),
             'pady': 4,
             }
 

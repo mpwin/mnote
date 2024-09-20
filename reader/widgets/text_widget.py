@@ -37,7 +37,7 @@ class TextWidget(BaseWidget):
             'bd': 0,
             'bg': self.background,
             'fg': self.foreground,
-            'font': ('Consolas', 16),
+            'font': (self.font, self.font_size),
             'height': self.text_height,
             'state': 'disabled',
             'width': self.text_width,
