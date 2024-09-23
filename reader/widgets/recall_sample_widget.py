@@ -45,14 +45,18 @@ class RecallSampleWidget(BaseWidget):
         return min(self.data.get('sample_size', 10), len(self.data['items']))
 
     def display_items(self, items: list) -> None:
+        def get_text(data: list | str) -> str:
+            return random.choice(data) if isinstance(data, list) else data
+
         for item in items:
             item_frame: tk.Frame = tk.Frame(self)
             item_frame.pack()
 
-            for column, text in enumerate(item):
+            for column, data in enumerate(item):
                 label: tk.Label = tk.Label(item_frame, **self.label_config)
-                label.grid(row=0, column=column)
+                text: str = get_text(data)
 
+                label.grid(row=0, column=column)
                 label.bind(
                     '<Button-1>',
                     lambda e, label=label, text=text: label.config(text=text),
