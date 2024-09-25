@@ -52,7 +52,7 @@ class RecallWidget(BaseWidget):
 
             a_label: tk.Label = tk.Label(
                 item_frame,
-                fg=self.foreground,
+                fg=self.font_color,
                 text="?",
                 **self.label_config,
                 )

@@ -17,12 +17,12 @@ class BaseWidget(tk.Frame):
         return self.widget_config.get('background', '#1e1e1e')
 
     @property
-    def foreground(self) -> str:
-        return self.widget_config.get('foreground', '#d4d4d4')
-
-    @property
     def font(self) -> str:
         return self.widget_config.get('font', 'Consolas')
+
+    @property
+    def font_color(self) -> str:
+        return self.widget_config.get('font_color', '#d4d4d4')
 
     @property
     def font_size(self) -> int:

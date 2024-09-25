@@ -36,7 +36,7 @@ class TextWidget(BaseWidget):
         return {
             'bd': 0,
             'bg': self.background,
-            'fg': self.foreground,
+            'fg': self.font_color,
             'font': (self.font, self.font_size),
             'height': self.text_height,
             'state': 'disabled',

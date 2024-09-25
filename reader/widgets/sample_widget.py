@@ -34,7 +34,7 @@ class SampleWidget(BaseWidget):
     def label_config(self) -> dict:
         return {
             'bg': self.background,
-            'fg': self.foreground,
+            'fg': self.font_color,
             'font': (self.font, self.font_size),
             'pady': 4,
             }
