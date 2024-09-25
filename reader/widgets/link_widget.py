@@ -46,7 +46,7 @@ class LinkWidget(BaseWidget):
     def label_config(self) -> dict:
         return {
             'bg': self.background,
-            'fg': '#0e639c',
+            'fg': self.highlight_color,
             'font': (self.font, self.font_size),
             'pady': 4,
             }

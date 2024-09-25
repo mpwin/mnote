@@ -29,6 +29,10 @@ class BaseWidget(tk.Frame):
         return self.widget_config.get('font_size', 16)
 
     @property
+    def highlight_color(self) -> str:
+        return self.widget_config.get('highlight_color', '#569cd6')
+
+    @property
     def pack_config(self) -> dict:
         return {
             'side': self.data.get('pack_side', 'left'),

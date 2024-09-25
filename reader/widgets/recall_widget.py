@@ -44,7 +44,7 @@ class RecallWidget(BaseWidget):
 
             q_label: tk.Label = tk.Label(
                 item_frame,
-                fg='#569cd6',
+                fg=self.highlight_color,
                 text=item['q'],
                 **self.label_config,
                 )
