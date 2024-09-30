@@ -9,6 +9,14 @@ class BaseWidget(tk.Frame):
         self.data = data
 
     @property
+    def frame_config(self) -> dict:
+        return {
+            'bg': self.background,
+            'padx': 40,
+            'pady': 40,
+            }
+
+    @property
     def widget_config(self) -> dict:
         return self.data.get('config', {})
 

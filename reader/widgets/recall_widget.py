@@ -21,14 +21,6 @@ class RecallWidget(BaseWidget):
         self.pack(self.pack_config)
 
     @property
-    def frame_config(self) -> dict:
-        return {
-            'bg': self.background,
-            'padx': 40,
-            'pady': 40,
-            }
-
-    @property
     def label_config(self) -> dict:
         return {
             'anchor': 'w',

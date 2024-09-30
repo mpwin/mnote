@@ -35,14 +35,6 @@ class LinkWidget(BaseWidget):
         return self.data.get('close', False)
 
     @property
-    def frame_config(self) -> dict:
-        return {
-            'bg': self.background,
-            'padx': 40,
-            'pady': 40,
-            }
-
-    @property
     def label_config(self) -> dict:
         return {
             'bg': self.background,
