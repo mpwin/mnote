@@ -12,6 +12,8 @@ def read(path: str) -> None:
     center_window(app)
     app.mainloop()
 
+    print(path)
+
 
 def center_window(app: tk.Tk) -> None:
     """Center the tkinter application window on the screen.

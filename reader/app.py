@@ -27,7 +27,6 @@ class App(tk.Tk):
         self.widgets: list = []
         self.title("mnote")
         self.config(bg='#1e1e1e')
-        self.protocol('WM_DELETE_WINDOW', self.on_close)
 
         if 'header' in data:
             self.header = self.make_header(data['header'])
@@ -68,8 +67,3 @@ class App(tk.Tk):
             )
         header.pack(fill='both')
         return header
-
-    def on_close(self) -> None:
-        """Handles the event triggered by closing the Tkinter window."""
-        print(self.mnote_path)
-        self.destroy()
