@@ -1,5 +1,6 @@
 import tkinter as tk
 
+from reader import components as cp
 from .base_widget import BaseWidget
 
 
@@ -15,10 +16,8 @@ class TextWidget(BaseWidget):
         """
         super().__init__(parent, data)
 
-        text: tk.Text = tk.Text(self)
-        text.insert(tk.END, self.data['text'])
-        text.config(self.text_config)
-        text.pack()
+        text: cp.Text = cp.Text(self.data['text'], self.text_config)
+        text.pack(self)
 
         self.config(self.frame_config)
         self.pack(self.pack_config)
@@ -26,14 +25,11 @@ class TextWidget(BaseWidget):
     @property
     def text_config(self) -> dict:
         return {
-            'bd': 0,
             'bg': self.background,
             'fg': self.font_color,
             'font': (self.font, self.font_size),
             'height': self.text_height,
-            'state': 'disabled',
             'width': self.text_width,
-            'wrap': 'word',
             }
 
     @property
