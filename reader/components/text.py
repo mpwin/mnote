@@ -23,15 +23,27 @@ class Text():
 
     @property
     def config(self) -> dict:
-        return self._config
+        return {
+            **self._config,
+            'height': self.height,
+            'width': self.width,
+            }
 
     @config.setter
     def config(self, config: dict) -> None:
         self._config.update(config)
 
     @property
+    def height(self) -> int:
+        return len(self.text.split('\n'))
+
+    @property
     def text(self) -> str:
         return self._text
+
+    @property
+    def width(self) -> int:
+        return max([len(line) for line in self.text.split('\n')])
 
     def pack(self, parent: tk.Widget) -> None:
         self._widget: tk.Text = tk.Text(parent)

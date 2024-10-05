@@ -28,14 +28,4 @@ class TextWidget(BaseWidget):
             'bg': self.background,
             'fg': self.font_color,
             'font': (self.font, self.font_size),
-            'height': self.text_height,
-            'width': self.text_width,
             }
-
-    @property
-    def text_height(self) -> int:
-        return len(self.data['text'].split('\n'))
-
-    @property
-    def text_width(self) -> int:
-        return max([len(line) for line in self.data['text'].split('\n')])
