@@ -35,7 +35,7 @@ class Text():
 
     @property
     def height(self) -> int:
-        return len(self.text.split('\n'))
+        return len(self.text.splitlines())
 
     @property
     def text(self) -> str:
@@ -43,7 +43,7 @@ class Text():
 
     @property
     def width(self) -> int:
-        return max([len(line) for line in self.text.split('\n')])
+        return max(len(line) for line in self.text.splitlines())
 
     def pack(self, parent: tk.Widget) -> None:
         self._widget: tk.Text = tk.Text(parent)
