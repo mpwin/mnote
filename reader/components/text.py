@@ -49,4 +49,4 @@ class Text():
         self._widget: tk.Text = tk.Text(parent)
         self._widget.insert(tk.END, self.text)
         self._widget.config(self.config)
-        self._widget.pack()
+        self._widget.pack(expand=True, fill='both')

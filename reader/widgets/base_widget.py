@@ -43,5 +43,7 @@ class BaseWidget(tk.Frame):
     @property
     def pack_config(self) -> dict:
         return {
+            'expand': True,
+            'fill': 'both',
             'side': self.data.get('pack_side', 'left'),
             }
