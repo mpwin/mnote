@@ -29,10 +29,6 @@ class Text():
             'width': self.width,
             }
 
-    @config.setter
-    def config(self, config: dict) -> None:
-        self._config.update(config)
-
     @property
     def height(self) -> int:
         return len(self.text.splitlines())
